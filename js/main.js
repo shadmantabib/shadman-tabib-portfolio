@@ -21,35 +21,45 @@ function initializeNavigation() {
     const navbar = document.getElementById('navbar');
 
     // Mobile menu toggle
-    if (navToggle) {
-        navToggle.addEventListener('click', () => {
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
             navMenu.classList.toggle('active');
             navToggle.classList.toggle('active');
             
-            // Animate hamburger bars
-            const bars = navToggle.querySelectorAll('.bar');
-            bars.forEach((bar, index) => {
-                bar.style.transform = navMenu.classList.contains('active') 
-                    ? `rotate(${index === 0 ? 45 : index === 1 ? 0 : -45}deg) translate(${index === 1 ? '100%' : '0'}, ${index === 0 ? '6px' : index === 2 ? '-6px' : '0'})`
-                    : 'none';
-                bar.style.opacity = navMenu.classList.contains('active') && index === 1 ? '0' : '1';
-            });
+            // Prevent body scroll when menu is open
+            if (navMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+            
+            console.log('Mobile menu toggled:', navMenu.classList.contains('active'));
         });
     }
 
     // Close mobile menu when clicking on a link
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
-            
-            // Reset hamburger bars
-            const bars = navToggle.querySelectorAll('.bar');
-            bars.forEach(bar => {
-                bar.style.transform = 'none';
-                bar.style.opacity = '1';
-            });
+            if (navMenu && navToggle) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (navMenu && navToggle && navMenu.classList.contains('active')) {
+            if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
     });
 
     // Navbar scroll effect
