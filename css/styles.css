@@ -598,6 +598,50 @@ section {
     box-shadow: var(--shadow-accent);
 }
 
+.timeline-item.champion .timeline-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border: 2px solid #ffd700;
+    box-shadow: 0 8px 32px rgba(255, 215, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-item.champion .timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    animation: shimmer 3s infinite;
+}
+
+.timeline-item.champion .timeline-marker {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    color: #1a1a2e;
+    animation: pulse 2s infinite;
+    width: 24px;
+    height: 24px;
+    font-size: 0.9rem;
+}
+
+.timeline-item.champion .timeline-header h3 {
+    color: #ffd700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-item.champion .timeline-header h4 {
+    color: #e6e6e6;
+}
+
+.timeline-item.champion .timeline-date {
+    color: #ffd700;
+    font-weight: var(--font-weight-semibold);
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
 .timeline-marker {
     position: absolute;
     left: 20px;
