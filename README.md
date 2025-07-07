@@ -46,7 +46,6 @@ A world-class, responsive portfolio website showcasing AI research, publications
 2. **Add Your Images**
    - Add your professional headshot as `assets/profile-photo.jpg`
    - Add your CV as `assets/cv.pdf`
-   - Add favicon as `assets/favicon.ico`
    - See [assets/README.md](assets/README.md) for detailed requirements
 
 3. **Open in Browser**
@@ -69,8 +68,7 @@ shadman-tabib-portfolio/
 ├── assets/
 │   ├── README.md         # Asset requirements
 │   ├── profile-photo.jpg # Your professional photo
-│   ├── cv.pdf           # Your academic CV
-│   └── favicon.ico      # Website favicon
+│   └── cv.pdf           # Your academic CV
 ├── README.md            # This file
 └── .gitignore          # Git ignore rules
 ```

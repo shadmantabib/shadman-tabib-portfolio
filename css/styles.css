@@ -942,6 +942,81 @@ section {
     font-weight: var(--font-weight-medium);
 }
 
+/* Champion Achievement Styling */
+.achievement-item.champion {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border: 2px solid #ffd700;
+    box-shadow: 0 8px 32px rgba(255, 215, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.achievement-item.champion::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.achievement-item.champion:hover {
+    transform: translateX(8px) scale(1.02);
+    box-shadow: 0 12px 48px rgba(255, 215, 0, 0.4);
+}
+
+.achievement-item.champion .achievement-icon {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    color: #1a1a2e;
+    font-size: 1.5rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.achievement-item.champion .achievement-content h4 {
+    color: #ffd700;
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.achievement-item.champion .achievement-content p {
+    color: #e6e6e6;
+}
+
+.achievement-details {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-sm) 0;
+    flex-wrap: wrap;
+}
+
+.achievement-highlight {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    color: #1a1a2e;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: var(--font-weight-semibold);
+    white-space: nowrap;
+}
+
+.achievement-item.champion .achievement-date {
+    color: #ffd700;
+    font-weight: var(--font-weight-semibold);
+}
+
 /* ===== CONTACT SECTION ===== */
 .contact {
     background: var(--bg-secondary);
