@@ -84,6 +84,10 @@ body {
     overflow-x: hidden;
 }
 
+body.no-scroll {
+    overflow: hidden;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -1417,90 +1421,71 @@ section {
         --spacing-2xl: 2.5rem;
     }
 
+    /* === MOBILE NAVIGATION MENU === */
     .nav-menu {
         position: fixed;
-        top: 0; /* overlay entire screen */
+        top: 0;
         left: 0;
         width: 100%;
         height: 100vh;
-        background: rgba(17, 17, 17, 0.98);
+        background: rgba(10, 10, 10, 0.95);
         backdrop-filter: blur(20px);
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
-        padding-top: var(--spacing-2xl);
-        transition: transform var(--transition-normal);
-        transform: translateX(-100%); /* hidden state */
-        border-top: none;
-        z-index: 1050; /* above navbar (1000) */
-        gap: var(--spacing-sm);
-        overflow-y: auto;
+        gap: var(--spacing-md);
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(-100%);
+        z-index: 1010;
+        padding: var(--spacing-xl);
+        display: flex; /* Always flex, just hidden off-screen */
     }
 
     .nav-menu.active {
-        transform: translateX(0); /* slide in */
+        transform: translateX(0);
     }
 
-    /* ensure links are visible */
     .nav-menu .nav-link {
+        font-size: 1.5rem;
+        font-weight: var(--font-weight-semibold);
         color: var(--text-primary);
+        padding: var(--spacing-sm);
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
-    .nav-menu .nav-link {
-        font-size: 1.125rem;
-        padding: var(--spacing-md) var(--spacing-lg);
-        width: 90%;
-        text-align: center;
-        border-bottom: 1px solid var(--border-color);
-        transition: all var(--transition-normal);
-        border-radius: var(--radius-sm);
-        margin-bottom: var(--spacing-xs);
-        text-decoration: none;
-        display: block;
-        position: relative;
-        -webkit-tap-highlight-color: transparent;
+    .nav-menu.active .nav-link {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: calc(0.1s * var(--i)); /* Stagger animation */
     }
 
-    .nav-menu .nav-link:hover,
-    .nav-menu .nav-link.active {
-        background: var(--bg-elevated);
-        color: var(--text-accent);
-        border-color: var(--text-accent);
-    }
-
-    .nav-menu .nav-link:last-child {
-        border-bottom: none;
-    }
-
+    /* === MOBILE NAVIGATION TOGGLE (HAMBURGER) === */
     .nav-toggle {
         display: flex;
         flex-direction: column;
-        cursor: pointer;
-        padding: var(--spacing-xs);
-        border-radius: var(--radius-sm);
-        transition: background var(--transition-normal);
-        gap: 4px;
+        justify-content: space-around;
         width: 30px;
         height: 30px;
-        justify-content: center;
-        align-items: center;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    .nav-toggle:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1020; /* Higher than menu */
+        position: relative;
     }
 
     .nav-toggle .bar {
-        width: 25px;
-        height: 2px;
+        width: 30px;
+        height: 3px;
         background: var(--text-primary);
-        transition: all var(--transition-normal);
-        border-radius: 2px;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
     }
 
     .nav-toggle.active .bar:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
+        transform: rotate(45deg) translate(7px, 7px);
     }
 
     .nav-toggle.active .bar:nth-child(2) {
@@ -1508,9 +1493,10 @@ section {
     }
 
     .nav-toggle.active .bar:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
+        transform: rotate(-45deg) translate(7px, -7px);
     }
-
+    
+    /* === Other Responsive Adjustments === */
     .title-line {
         font-size: 2.5rem;
     }

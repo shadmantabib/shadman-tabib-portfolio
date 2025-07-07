@@ -22,44 +22,23 @@ function initializeNavigation() {
 
     // Mobile menu toggle
     if (navToggle && navMenu) {
-        navToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            
+        navToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             navToggle.classList.toggle('active');
-            
-            // Prevent body scroll when menu is open
-            if (navMenu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
-            
-            console.log('Mobile menu toggled:', navMenu.classList.contains('active'));
+            document.body.classList.toggle('no-scroll');
         });
     }
 
-    // Close mobile menu when clicking on a link
-    navLinks.forEach(link => {
+    // Assign transition delay for staggered animation
+    navLinks.forEach((link, index) => {
+        link.style.setProperty('--i', index);
         link.addEventListener('click', () => {
-            if (navMenu && navToggle) {
+            if (navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
                 navToggle.classList.remove('active');
-                document.body.style.overflow = '';
+                document.body.classList.remove('no-scroll');
             }
         });
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (navMenu && navToggle && navMenu.classList.contains('active')) {
-            if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
     });
 
     // Navbar scroll effect
